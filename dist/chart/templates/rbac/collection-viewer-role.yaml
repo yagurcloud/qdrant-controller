@@ -11,10 +11,10 @@ metadata:
 {{- end }}
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    app.kubernetes.io/name: {{ include "yagur-controllers.name" . }}
+    app.kubernetes.io/name: yagur-controllers
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-  name: {{ include "yagur-controllers.resourceName" (dict "suffix" "collection-viewer-role" "context" $) }}
+  name: {{ include "qdrant-controller.resourceName" (dict "suffix" "collection-viewer-role" "context" $) }}
 rules:
 - apiGroups:
   - qdrant.yagur.io

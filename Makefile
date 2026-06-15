@@ -263,13 +263,22 @@ endef
 ## Helm binary to use for deploying the chart
 HELM ?= helm
 ## Namespace to deploy the Helm release
-HELM_NAMESPACE ?= yagur-controllers-system
+HELM_NAMESPACE ?= qdrant-controller-system
 ## Name of the Helm release
-HELM_RELEASE ?= yagur-controllers
+HELM_RELEASE ?= qdrant-controller
 ## Path to the Helm chart directory
 HELM_CHART_DIR ?= dist/chart
 ## Additional arguments to pass to helm commands
 HELM_EXTRA_ARGS ?=
+
+CHART_NAME ?= qdrant-controller
+CHART_DESCRIPTION ?= A Helm chart for the Qdrant Kubernetes controller
+
+.PHONY: helm-chart
+helm-chart: build-installer ## Generate and patch the Helm chart
+	kubebuilder edit --plugins=helm/v2-alpha --force
+	@sed -i 's/name: .*/name: $(CHART_NAME)/' dist/chart/Chart.yaml
+	@sed -i 's/description: .*/description: $(CHART_DESCRIPTION)/' dist/chart/Chart.yaml
 
 .PHONY: install-helm
 install-helm: ## Install the latest version of Helm.

@@ -2,8 +2,6 @@ name: Test Chart
 
 on:
   push:
-    branches:
-      - main
   pull_request:
 
 permissions: {}
@@ -39,7 +37,7 @@ jobs:
       - name: Create kind cluster
         run: kind create cluster
 
-      - name: Prepare yagur-controllers
+      - name: Prepare qdrant-controller
         run: |
           go mod tidy
           make docker-build

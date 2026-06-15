@@ -4,17 +4,17 @@ kind: Certificate
 metadata:
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    app.kubernetes.io/name: {{ include "yagur-controllers.name" . }}
+    app.kubernetes.io/name: yagur-controllers
     helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-  name: {{ include "yagur-controllers.resourceName" (dict "suffix" "serving-cert" "context" $) }}
+  name: {{ include "qdrant-controller.resourceName" (dict "suffix" "serving-cert" "context" $) }}
   namespace: {{ .Release.Namespace }}
 spec:
   dnsNames:
-  - {{ include "yagur-controllers.resourceName" (dict "suffix" "webhook-service" "context" $) }}.{{ .Release.Namespace }}.svc
-  - {{ include "yagur-controllers.resourceName" (dict "suffix" "webhook-service" "context" $) }}.{{ .Release.Namespace }}.svc.cluster.local
+  - {{ include "qdrant-controller.resourceName" (dict "suffix" "webhook-service" "context" $) }}.{{ .Release.Namespace }}.svc
+  - {{ include "qdrant-controller.resourceName" (dict "suffix" "webhook-service" "context" $) }}.{{ .Release.Namespace }}.svc.cluster.local
   issuerRef:
     kind: Issuer
-    name: {{ include "yagur-controllers.resourceName" (dict "suffix" "selfsigned-issuer" "context" $) }}
+    name: {{ include "qdrant-controller.resourceName" (dict "suffix" "selfsigned-issuer" "context" $) }}
   secretName: webhook-server-cert
 {{- end }}

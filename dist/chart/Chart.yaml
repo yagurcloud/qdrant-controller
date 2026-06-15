@@ -1,6 +1,6 @@
 apiVersion: v2
-name: yagur-controllers
-description: A Helm chart to distribute yagur-controllers
+name: qdrant-controller
+description: A Helm chart for the Qdrant Kubernetes controller
 type: application
 
 version: 0.1.0

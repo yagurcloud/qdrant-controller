@@ -4,15 +4,15 @@ kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
     {{- if .Values.certManager.enable }}
-    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "yagur-controllers.resourceName" (dict "suffix" "serving-cert" "context" $) }}
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "qdrant-controller.resourceName" (dict "suffix" "serving-cert" "context" $) }}
     {{- end }}
-  name: {{ include "yagur-controllers.resourceName" (dict "suffix" "validating-webhook-configuration" "context" $) }}
+  name: {{ include "qdrant-controller.resourceName" (dict "suffix" "validating-webhook-configuration" "context" $) }}
 webhooks:
 - admissionReviewVersions:
   - v1
   clientConfig:
     service:
-      name: {{ include "yagur-controllers.resourceName" (dict "suffix" "webhook-service" "context" $) }}
+      name: {{ include "qdrant-controller.resourceName" (dict "suffix" "webhook-service" "context" $) }}
       namespace: {{ .Release.Namespace }}
       path: /validate-qdrant-yagur-io-v1alpha1-collection
   failurePolicy: Fail

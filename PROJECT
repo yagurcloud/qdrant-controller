@@ -10,8 +10,8 @@ plugins:
   helm.kubebuilder.io/v2-alpha:
     manifests: dist/install.yaml
     output: dist
-projectName: yagur-controllers
-repo: github.com/yagurcloud/yagur-controllers
+projectName: qdrant-controller
+repo: github.com/yagurcloud/qdrant-controller
 resources:
 - api:
     crdVersion: v1
@@ -20,7 +20,7 @@ resources:
   domain: yagur.io
   group: qdrant
   kind: Collection
-  path: github.com/yagurcloud/yagur-controllers/api/v1alpha1
+  path: github.com/yagurcloud/qdrant-controller/api/v1alpha1
   version: v1alpha1
   webhooks:
     defaulting: true

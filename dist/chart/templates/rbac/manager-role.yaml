@@ -8,7 +8,7 @@ metadata:
 {{- if .Values.rbac.namespaced }}
   namespace: {{ .Release.Namespace }}
 {{- end }}
-  name: {{ include "yagur-controllers.resourceName" (dict "suffix" "manager-role" "context" $) }}
+  name: {{ include "qdrant-controller.resourceName" (dict "suffix" "manager-role" "context" $) }}
 rules:
 - apiGroups:
   - qdrant.yagur.io
