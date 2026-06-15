@@ -36,10 +36,10 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
-	qdrantv1alpha1 "github.com/yagurcloud/yagur-controllers/api/v1alpha1"
-	"github.com/yagurcloud/yagur-controllers/internal/controller"
-	"github.com/yagurcloud/yagur-controllers/internal/qdrant"
-	webhookv1alpha1 "github.com/yagurcloud/yagur-controllers/internal/webhook/v1alpha1"
+	qdrantv1alpha1 "github.com/yagurcloud/qdrant-controller/api/v1alpha1"
+	"github.com/yagurcloud/qdrant-controller/internal/controller"
+	"github.com/yagurcloud/qdrant-controller/internal/qdrant"
+	webhookv1alpha1 "github.com/yagurcloud/qdrant-controller/internal/webhook/v1alpha1"
 	// +kubebuilder:scaffold:imports
 )
 

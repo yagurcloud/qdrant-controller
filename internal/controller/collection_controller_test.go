@@ -27,7 +27,7 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	qdrantv1alpha1 "github.com/yagurcloud/yagur-controllers/api/v1alpha1"
+	qdrantv1alpha1 "github.com/yagurcloud/qdrant-controller/api/v1alpha1"
 )
 
 var _ = Describe("Collection Controller", func() {

@@ -25,7 +25,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
 	"github.com/qdrant/go-client/qdrant"
-	qdrantv1alpha1 "github.com/yagurcloud/yagur-controllers/api/v1alpha1"
+	qdrantv1alpha1 "github.com/yagurcloud/qdrant-controller/api/v1alpha1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 )
 

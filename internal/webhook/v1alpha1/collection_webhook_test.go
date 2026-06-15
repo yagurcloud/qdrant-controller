@@ -20,7 +20,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	qdrantv1alpha1 "github.com/yagurcloud/yagur-controllers/api/v1alpha1"
+	qdrantv1alpha1 "github.com/yagurcloud/qdrant-controller/api/v1alpha1"
 	// TODO (user): Add any additional imports if needed
 )
 

@@ -1,4 +1,4 @@
-module github.com/yagurcloud/yagur-controllers
+module github.com/yagurcloud/qdrant-controller
 
 go 1.25.7
 

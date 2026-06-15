@@ -28,7 +28,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/yagurcloud/yagur-controllers/test/utils"
+	"github.com/yagurcloud/qdrant-controller/test/utils"
 )
 
 var (
