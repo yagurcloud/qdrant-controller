@@ -1,0 +1,10 @@
+apiVersion: qdrant.yagur.io/v1alpha1
+kind: Collection
+metadata:
+  labels:
+    app.kubernetes.io/name: yagur-controllers
+    app.kubernetes.io/managed-by: kustomize
+  name: collection-sample
+spec:
+  vectorSize: 384
+  distance: Cosine
