@@ -27,4 +27,4 @@ jobs:
           make manifests generate build-installer
           VERSION=${{ github.ref_name }}
           helm package dist/chart/ --version ${VERSION#v}
-          helm push yagur-controllers-${VERSION#v}.tgz oci://ghcr.io/${{ github.repository_owner }}
+          helm push qdrant-controller-${VERSION#v}.tgz oci://ghcr.io/${{ github.repository_owner }}
