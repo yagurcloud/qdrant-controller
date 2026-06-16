@@ -34,16 +34,16 @@ import (
 )
 
 // namespace where the project is deployed in
-const namespace = "yagur-controllers-system"
+const namespace = "qdrant-controller-system"
 
 // serviceAccountName created for the project
-const serviceAccountName = "yagur-controllers-controller-manager"
+const serviceAccountName = "qdnrat-controller-controller-manager"
 
 // metricsServiceName is the name of the metrics service of the project
-const metricsServiceName = "yagur-controllers-controller-manager-metrics-service"
+const metricsServiceName = "qdrant-controller-controller-manager-metrics-service"
 
 // metricsRoleBindingName is the name of the RBAC that will be created to allow get the metrics data
-const metricsRoleBindingName = "yagur-controllers-metrics-binding"
+const metricsRoleBindingName = "qdrant-controller-metrics-binding"
 
 var _ = Describe("Manager", Ordered, func() {
 	var controllerPodName string
@@ -176,7 +176,7 @@ var _ = Describe("Manager", Ordered, func() {
 		It("should ensure the metrics endpoint is serving metrics", func() {
 			By("creating a ClusterRoleBinding for the service account to allow access to metrics")
 			cmd := exec.Command("kubectl", "create", "clusterrolebinding", metricsRoleBindingName,
-				"--clusterrole=yagur-controllers-metrics-reader",
+				"--clusterrole=qdrant-controller-metrics-reader",
 				fmt.Sprintf("--serviceaccount=%s:%s", namespace, serviceAccountName),
 			)
 			_, err := utils.Run(cmd)
@@ -215,7 +215,7 @@ var _ = Describe("Manager", Ordered, func() {
 			By("waiting for the webhook service endpoints to be ready")
 			verifyWebhookEndpointsReady := func(g Gomega) {
 				cmd := exec.Command("kubectl", "get", "endpointslices.discovery.k8s.io", "-n", namespace,
-					"-l", "kubernetes.io/service-name=yagur-controllers-webhook-service",
+					"-l", "kubernetes.io/service-name=qdrant-controller-webhook-service",
 					"-o", "jsonpath={range .items[*]}{range .endpoints[*]}{.addresses[*]}{end}{end}")
 				output, err := utils.Run(cmd)
 				g.Expect(err).NotTo(HaveOccurred(), "Webhook endpoints should exist")
@@ -226,7 +226,7 @@ var _ = Describe("Manager", Ordered, func() {
 			By("verifying the mutating webhook server is ready")
 			verifyMutatingWebhookReady := func(g Gomega) {
 				cmd := exec.Command("kubectl", "get", "mutatingwebhookconfigurations.admissionregistration.k8s.io",
-					"yagur-controllers-mutating-webhook-configuration",
+					"qdrant-controller-mutating-webhook-configuration",
 					"-o", "jsonpath={.webhooks[0].clientConfig.caBundle}")
 				output, err := utils.Run(cmd)
 				g.Expect(err).NotTo(HaveOccurred(), "MutatingWebhookConfiguration should exist")
@@ -237,7 +237,7 @@ var _ = Describe("Manager", Ordered, func() {
 			By("verifying the validating webhook server is ready")
 			verifyValidatingWebhookReady := func(g Gomega) {
 				cmd := exec.Command("kubectl", "get", "validatingwebhookconfigurations.admissionregistration.k8s.io",
-					"yagur-controllers-validating-webhook-configuration",
+					"qdrant-controller-validating-webhook-configuration",
 					"-o", "jsonpath={.webhooks[0].clientConfig.caBundle}")
 				output, err := utils.Run(cmd)
 				g.Expect(err).NotTo(HaveOccurred(), "ValidatingWebhookConfiguration should exist")
@@ -319,7 +319,7 @@ var _ = Describe("Manager", Ordered, func() {
 			verifyCAInjection := func(g Gomega) {
 				cmd := exec.Command("kubectl", "get",
 					"mutatingwebhookconfigurations.admissionregistration.k8s.io",
-					"yagur-controllers-mutating-webhook-configuration",
+					"qdrant-controller-mutating-webhook-configuration",
 					"-o", "go-template={{ range .webhooks }}{{ .clientConfig.caBundle }}{{ end }}")
 				mwhOutput, err := utils.Run(cmd)
 				g.Expect(err).NotTo(HaveOccurred())
@@ -333,7 +333,7 @@ var _ = Describe("Manager", Ordered, func() {
 			verifyCAInjection := func(g Gomega) {
 				cmd := exec.Command("kubectl", "get",
 					"validatingwebhookconfigurations.admissionregistration.k8s.io",
-					"yagur-controllers-validating-webhook-configuration",
+					"qdrant-controller-validating-webhook-configuration",
 					"-o", "go-template={{ range .webhooks }}{{ .clientConfig.caBundle }}{{ end }}")
 				vwhOutput, err := utils.Run(cmd)
 				g.Expect(err).NotTo(HaveOccurred())
