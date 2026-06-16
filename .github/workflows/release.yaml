@@ -25,8 +25,8 @@ jobs:
       - name: Build and push controller image
         run: |
           VERSION=${{ github.ref_name }}
-          docker build -t ghcr.io/${{ github.repository_owner }}/controller:${VERSION#v} .
-          docker push ghcr.io/${{ github.repository_owner }}/controller:${VERSION#v}
+          docker build -t ghcr.io/${{ github.repository_owner }}/qdrant-controller:${VERSION#v} .
+          docker push ghcr.io/${{ github.repository_owner }}/qdrant-controller:${VERSION#v}
 
       - name: Build and push Helm chart
         run: |
