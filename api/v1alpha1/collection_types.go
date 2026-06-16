@@ -27,8 +27,10 @@ import (
 type (
 	// CollectionSpec defines the desired state of Collection
 	CollectionSpec struct {
-		VectorSize int    `json:"vectorSize"`
-		Distance   string `json:"distance"` // Cosine, Euclid, Dot, Manhattan
+		// +kubebuilder:validation:Minimum=1
+		VectorSize int `json:"vectorSize"`
+		// +kubebuilder:validation:Enum=Cosine;Euclid;Dot;Manhattan
+		Distance string `json:"distance"` // Cosine, Euclid, Dot, Manhattan
 	}
 
 	// CollectionStatus defines the observed state of Collection.

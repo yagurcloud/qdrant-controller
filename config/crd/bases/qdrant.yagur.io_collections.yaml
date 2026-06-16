@@ -40,8 +40,14 @@ spec:
             description: spec defines the desired state of Collection
             properties:
               distance:
+                enum:
+                - Cosine
+                - Euclid
+                - Dot
+                - Manhattan
                 type: string
               vectorSize:
+                minimum: 1
                 type: integer
             required:
             - distance
