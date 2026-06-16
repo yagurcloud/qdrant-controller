@@ -1,5 +1,5 @@
 apiVersion: v2
-name: qdrant-controller
+name: controller
 description: A Helm chart for the Qdrant Kubernetes controller
 type: application
 
